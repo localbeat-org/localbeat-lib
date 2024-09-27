@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -347,7 +348,9 @@ public class SMTHttpConnectionManager {
 			actionUrl = ((sslSocketFactory == null) ? HTTP_CONN_PREFIX : HTTPS_CONN_PREFIX) + actionUrl;
 		}
 
-		return new URL(actionUrl);
+		URL url = null;
+		try { url = new URI(actionUrl).toURL(); } catch (Exception e) { /* Nothing to do */ }
+		return url;
 	}
 
 	/**

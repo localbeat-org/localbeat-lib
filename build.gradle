@@ -10,7 +10,7 @@ plugins {
 	// Apply the java-library plugin to add support for Java Library
 	id 'java'
 	id 'jacoco'
-	id 'org.springframework.boot' version '3.3.2'
+	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'io.freefair.lombok' version '8.4'
 	id 'signing'
@@ -19,17 +19,18 @@ plugins {
 	id "org.sonarqube" version "4.4.1.3373"
 }
 
-group = 'com.siliconmtn'
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
+group = 'org.localbeat'
 
 /*
  * For snapshot publishing, use: version = n.n.n.n-SNAPSHOT
  * For 'release' publishing, use: version = n.n.n
  *
  */
-//version = '2.0.5-SNAPSHOT'
-version = '2.0.5'
+version = '0.0.1'
 
-archivesBaseName = "spacelibs-java"
+archivesBaseName = "localbeat-lib"
 
 
 configurations {
@@ -127,67 +128,9 @@ javadoc {
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
     withJavadocJar()
     withSourcesJar()
-}
-
-publishing {
-	publications {
-		spaceLibsJava(MavenPublication) {
-			artifactId = 'spacelibs-java'
-      		from components.java
-      		versionMapping {
-      			usage('java-api') {
-      				fromResolutionOf('runtimeClasspath')
-		        }
-		        usage('java-runtime') {
-		        	fromResolutionResult()
-		        }
-		    }
-			pom {
-				name = "spacelibs-java"
-			    description = "A libary of useful tools and helper objects."
-			    url = "https://github.com/smtadmin/spacelibs-java"
-			    licenses {
-			    	license {
-			        	name = "MIT License"
-			            url = "https://opensource.org/licenses/mit-license.php"
-			        }
-			    }
-			    developers {
-			    	developer {
-			        	id = "etewa"
-			        	name = "James Camire"
-			        	email = "james@siliconmtn.com"
-			        	organization = "Silicon Mountain Technologies, Inc."
-			        	organizationUrl = "https://www.siliconmtn.com"
-			        }
-			    }
-			    scm {
-			    	connection = "scm:git:git://github.com/smtadmin/spacelibs-java.git"
-			    	developerConnection = "scm:git:ssh://github.com:smtadmin/spacelibs-java.git"
-			    	url = "https://github.com/smtadmin/spacelibs-java/tree/main"
-			    }
-			}
-		}
-	}
-  repositories {
-      maven {
-          credentials {
-              username project.ossrhUsername
-              password project.ossrhPassword
-          }
-          if (project.version.endsWith("-SNAPSHOT")) {
-              url = "https://oss.sonatype.org/content/repositories/snapshots/"
-          } else {
-              //url = "$buildDir/repos/releases"
-              url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-          }
-      }
-  }
-}
-
-signing {
-    sign publishing.publications.spaceLibsJava
 }
