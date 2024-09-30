@@ -1,0 +1,129 @@
+{
+   "results" : 
+   [
+      {
+         "address_components" : 
+         [
+            {
+               "long_name" : "15602",
+               "short_name" : "15602",
+               "types" : 
+               [
+                  "street_number"
+               ]
+            },
+            {
+               "long_name" : "West 79th Place",
+               "short_name" : "W 79th Pl",
+               "types" : 
+               [
+                  "route"
+               ]
+            },
+            {
+               "long_name" : "Northwood Acres",
+               "short_name" : "Northwood Acres",
+               "types" : 
+               [
+                  "neighborhood",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Arvada",
+               "short_name" : "Arvada",
+               "types" : 
+               [
+                  "locality",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Jefferson County",
+               "short_name" : "Jefferson County",
+               "types" : 
+               [
+                  "administrative_area_level_2",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Colorado",
+               "short_name" : "CO",
+               "types" : 
+               [
+                  "administrative_area_level_1",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : 
+               [
+                  "country",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "80007",
+               "short_name" : "80007",
+               "types" : 
+               [
+                  "postal_code"
+               ]
+            },
+            {
+               "long_name" : "7810",
+               "short_name" : "7810",
+               "types" : 
+               [
+                  "postal_code_suffix"
+               ]
+            }
+         ],
+         "formatted_address" : "15602 W 79th Pl, Arvada, CO 80007, USA",
+         "geometry" : 
+         {
+            "bounds" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.8403991,
+                  "lng" : -105.1735847
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8401761,
+                  "lng" : -105.1738878
+               }
+            },
+            "location" : 
+            {
+               "lat" : 39.840322,
+               "lng" : -105.1737326
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.8416895302915,
+                  "lng" : -105.1725058697085
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8389915697085,
+                  "lng" : -105.1752038302915
+               }
+            }
+         },
+         "place_id" : "ChIJRcRPEVaOa4cRmikUsRqumSg",
+         "types" : 
+         [
+            "premise"
+         ]
+      }
+   ],
+   "status" : "OK"
+}

@@ -1,0 +1,100 @@
+{
+   "results" : 
+   [
+      {
+         "address_components" : 
+         [
+            {
+               "long_name" : "West 80th Avenue & Wadsworth Boulevard",
+               "short_name" : "W 80th Ave & Wadsworth Blvd",
+               "types" : 
+               [
+                  "intersection"
+               ]
+            },
+            {
+               "long_name" : "Club Crest",
+               "short_name" : "Club Crest",
+               "types" : 
+               [
+                  "neighborhood",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Arvada",
+               "short_name" : "Arvada",
+               "types" : 
+               [
+                  "locality",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Jefferson County",
+               "short_name" : "Jefferson County",
+               "types" : 
+               [
+                  "administrative_area_level_2",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Colorado",
+               "short_name" : "CO",
+               "types" : 
+               [
+                  "administrative_area_level_1",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : 
+               [
+                  "country",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "80003",
+               "short_name" : "80003",
+               "types" : 
+               [
+                  "postal_code"
+               ]
+            }
+         ],
+         "formatted_address" : "W 80th Ave & Wadsworth Blvd, Arvada, CO 80003, USA",
+         "geometry" : 
+         {
+            "location" : 
+            {
+               "lat" : 39.8417486,
+               "lng" : -105.0819542
+            },
+            "location_type" : "GEOMETRIC_CENTER",
+            "viewport" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.84309758029149,
+                  "lng" : -105.0806052197085
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.84039961970849,
+                  "lng" : -105.0833031802915
+               }
+            }
+         },
+         "place_id" : "EjJXIDgwdGggQXZlICYgV2Fkc3dvcnRoIEJsdmQsIEFydmFkYSwgQ08gODAwMDMsIFVTQSJmImQKFAoSCS11fCn_iGuHEY091hGwG50dEhQKEgktdXwp_4hrhxGNPdYRsBudHRoUChIJVQIK21WIa4cRIXReiWpEHUAaFAoSCbmIe1fihmuHEV3Q94a6eEV6IgoNTl6_FxUqxF3B",
+         "types" : 
+         [
+            "intersection"
+         ]
+      }
+   ],
+   "status" : "OK"
+}

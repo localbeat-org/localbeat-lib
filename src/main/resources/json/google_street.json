@@ -1,0 +1,113 @@
+{
+   "results" : 
+   [
+      {
+         "address_components" : 
+         [
+            {
+               "long_name" : "West 79th Place",
+               "short_name" : "W 79th Pl",
+               "types" : 
+               [
+                  "route"
+               ]
+            },
+            {
+               "long_name" : "Highlands",
+               "short_name" : "Highlands",
+               "types" : 
+               [
+                  "neighborhood",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Arvada",
+               "short_name" : "Arvada",
+               "types" : 
+               [
+                  "locality",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Jefferson County",
+               "short_name" : "Jefferson County",
+               "types" : 
+               [
+                  "administrative_area_level_2",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Colorado",
+               "short_name" : "CO",
+               "types" : 
+               [
+                  "administrative_area_level_1",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : 
+               [
+                  "country",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "80003",
+               "short_name" : "80003",
+               "types" : 
+               [
+                  "postal_code"
+               ]
+            }
+         ],
+         "formatted_address" : "W 79th Pl, Arvada, CO 80003, USA",
+         "geometry" : 
+         {
+            "bounds" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.8413767,
+                  "lng" : -105.0588466
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8405908,
+                  "lng" : -105.0625911
+               }
+            },
+            "location" : 
+            {
+               "lat" : 39.8410541,
+               "lng" : -105.060832
+            },
+            "location_type" : "GEOMETRIC_CENTER",
+            "viewport" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.8423327302915,
+                  "lng" : -105.0588466
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8396347697085,
+                  "lng" : -105.0625911
+               }
+            }
+         },
+         "place_id" : "ChIJVWeYxUiIa4cR6Y8cAZT14tw",
+         "types" : 
+         [
+            "route"
+         ]
+      }
+   ],
+   "status" : "OK"
+}
