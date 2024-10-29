@@ -31,18 +31,34 @@ class DistanceUtilTest {
 	 */
 	@Test
 	void testGetBoundingBox() {
-		double latitude = 39.8232;
-		double longitude = -105.2825;
+		double latitude = 39.86336900;
+		double longitude = -105.17242900;
 		
 		BoundingBox box = new DistanceUtil().getBoundingBox(new Coordinate(latitude, longitude), 10);
 		
 		// Validate the min point
-		assertEquals(39.75081604042454, box.getMinPoint().getLatitude());
-		assertEquals(-105.3767469690478, box.getMinPoint().getLongitude());
+		assertEquals(39.71860074610647, box.getMinPoint().getLatitude());
+		assertEquals(-105.36103367858658, box.getMinPoint().getLongitude());
 		
 		// Validate the max point
-		assertEquals(39.895583959575454, box.getMaxPoint().getLatitude());
-		assertEquals(-105.18825303095217, box.getMaxPoint().getLongitude());
+		assertEquals(40.00813725389353, box.getMaxPoint().getLatitude());
+		assertEquals(-104.9838243214134, box.getMaxPoint().getLongitude());
+	}
+
+	/**
+	 * Test method for {@link org.localbeat.api.geo.DistanceUtil#getDistanceBetweenPoints(org.localbeat.api.geo.Coordinate, org.localbeat.api.geo.Coordinate)}.
+	 */
+	@Test
+	void testGetDistanceBetweenPoints() {
+		Coordinate middle = new Coordinate(39.86336900, -105.17242900);
+		BoundingBox box = new DistanceUtil().getBoundingBox(middle, 5.33);
+		
+		Coordinate start = box.getMinPoint();
+		Coordinate end = new Coordinate(box.getMinimumLatitudeValue(), box.getMaximumLongitudeValue());
+		
+		double distance = new DistanceUtil().getDistanceBetweenPoints(start, end);
+		
+		assertEquals(10.67, distance);
 	}
 
 }
