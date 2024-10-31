@@ -17,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +36,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.siliconmtn.data.bean.GenericVO;
@@ -70,7 +70,7 @@ class SMTHttpConnectionManagerTest {
 	HttpURLConnection mockUrlConn;
 
 	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	static void setUpBeforeClass() {
 		params = new HashMap<>();
 
 		List<String> values = new ArrayList<>();
@@ -85,7 +85,7 @@ class SMTHttpConnectionManagerTest {
 	}
 
 	@BeforeEach
-	void setUpBeforeEach() throws Exception {
+	void setUpBeforeEach() {
 
 		// Instantiate the conn mgr
 		connection = new SMTHttpConnectionManager();
@@ -139,8 +139,6 @@ class SMTHttpConnectionManagerTest {
 		byte[] nullBodyBytes = null;
 		assertThrows(IOException.class,
 				() -> connection.getRequestData(nullURL, nullBodyBytes, HttpConnectionType.GET));
-		// assertThrows(IOException.class, () -> connection.getRequestData(nullUrl,
-		// nullBodyBytes, HttpConnectionType.GET));
 
 		// Tests with a URL Class
 		URL mockUrl = mock(URL.class, Mockito.withSettings().useConstructor("http://www.siliconmtn.com"));
@@ -426,7 +424,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetConnectionTimeout() throws Exception {
+	void testGetConnectionTimeout() {
 		connection.setConnectionTimeout(5);
 		assertEquals(5, connection.getConnectionTimeout());
 	}
@@ -437,7 +435,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testIsFollowRedirects() throws Exception {
+	void testIsFollowRedirects() {
 		connection.setFollowRedirects(true);
 		assertTrue(connection.isFollowRedirects());
 	}
@@ -448,7 +446,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetRequestHeaders() throws Exception {
+	void testGetRequestHeaders() {
 		Map<String, String> nullHeaders = null;
 		connection.setRequestHeaders(nullHeaders);
 		assertEquals(0, connection.getRequestHeaders().size());
@@ -462,7 +460,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testAddRequestHeader() throws Exception {
+	void testAddRequestHeader() {
 		Map<String, String> nullHeaders = null;
 		String testKey = "testKey";
 		String testValue = "testValue";
@@ -492,7 +490,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetResponseCode() throws Exception {
+	void testGetResponseCode() {
 		assertEquals(0, connection.getResponseCode());
 	}
 
@@ -501,7 +499,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetCookies() throws Exception {
+	void testGetCookies() {
 		connection.setCookies(cookies);
 		assertEquals(3, connection.getCookies().size());
 
@@ -524,7 +522,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetHeaderMap() throws Exception {
+	void testGetHeaderMap() {
 		connection.setHeaderMap(cookies);
 		assertEquals(3, connection.getHeaderMap().size());
 
@@ -543,7 +541,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testGetRedirectLimit() throws Exception {
+	void testGetRedirectLimit() {
 		connection.setRedirectLimit(5);
 		assertEquals(5, connection.getRedirectLimit());
 	}
@@ -554,7 +552,7 @@ class SMTHttpConnectionManagerTest {
 	 * @throws Exception
 	 */
 	@Test
-	void testIsUseCookieHandler() throws Exception {
+	void testIsUseCookieHandler() {
 		connection.setUseCookieHandler(true);
 		assertTrue(connection.isUseCookieHandler());
 	}
@@ -681,7 +679,7 @@ class SMTHttpConnectionManagerTest {
 	 */
 	@Test
 	void testStoreCookies() throws Exception {
-		URL myUrl = new URL(sUrl);
+		URL myUrl = new URI(sUrl).toURL();
 		mockUrlConn = (HttpURLConnection) myUrl.openConnection();
 		mockUrlConn = Mockito.spy(mockUrlConn);
 		Mockito.doReturn("JSESSION_ID=12345678").when(mockUrlConn).getHeaderField(0);
@@ -707,7 +705,7 @@ class SMTHttpConnectionManagerTest {
 	 */
 	@Test
 	void testAssignCookiesHttpURLConnection() throws Exception {
-		URL myUrl = new URL(url);
+		URL myUrl = new URI(url).toURL();
 		mockUrlConn = (HttpURLConnection) myUrl.openConnection();
 		connection.assignCookies(mockUrlConn);
 		assertNull(mockUrlConn.getRequestProperty("Cookie"));
@@ -730,7 +728,7 @@ class SMTHttpConnectionManagerTest {
 	@Test
 	void testSetRequestHeadersHttpURLConnection() throws Exception {
 		connection.setRequestHeaders(headers);
-		URL myUrl = new URL(sUrl);
+		URL myUrl = new URI(sUrl).toURL();
 		mockUrlConn = (HttpURLConnection) myUrl.openConnection();
 		connection.setRequestHeaders(mockUrlConn);
 
@@ -742,34 +740,34 @@ class SMTHttpConnectionManagerTest {
 	@Test
 	void buildUri() {
 		String endpoint = "https://test.com";
-		String url = "/test/{sessionId}";
+		String turl = "/test/{sessionId}";
 
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUri(null, null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUri("", null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUri(endpoint, null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUri(endpoint, ""));
 
-		String uri = assertDoesNotThrow(() -> connection.buildUri(endpoint, url));
-		assertEquals(endpoint + url, uri);
+		String uri = assertDoesNotThrow(() -> connection.buildUri(endpoint, turl));
+		assertEquals(endpoint + turl, uri);
 	}
 
 	@Test
 	void buildUriWithParams() {
 		UUID sessionId = UUID.randomUUID();
 		String endpoint = "https://test.com";
-		String url = "/test/{sessionId}";
+		String turl = "/test/{sessionId}";
 
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUriWithParams(null, null, null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUriWithParams("", null, null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUriWithParams(endpoint, null, null));
 		assertThrows(IllegalArgumentException.class, () -> connection.buildUriWithParams(endpoint, "", null));
 
-		String uri = assertDoesNotThrow(() -> connection.buildUriWithParams(endpoint, url, List.of(sessionId)));
-		assertEquals((endpoint + url).replace("{sessionId}", sessionId.toString()), uri);
+		String uri = assertDoesNotThrow(() -> connection.buildUriWithParams(endpoint, turl, List.of(sessionId)));
+		assertEquals((endpoint + turl).replace("{sessionId}", sessionId.toString()), uri);
 	}
 
 	@Test
-	void convertEndpointResponse() throws JsonProcessingException {
+	void convertEndpointResponse() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.findAndRegisterModules();
 
@@ -792,7 +790,7 @@ class SMTHttpConnectionManagerTest {
 	}
 
 	@Test
-	void convertEndpointResponseList() throws JsonProcessingException {
+	void convertEndpointResponseList() {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.findAndRegisterModules();
 

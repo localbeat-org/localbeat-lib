@@ -1,0 +1,101 @@
+{
+   "results" : 
+   [
+      {
+         "address_components" : 
+         [
+            {
+               "long_name" : "80007",
+               "short_name" : "80007",
+               "types" : 
+               [
+                  "postal_code"
+               ]
+            },
+            {
+               "long_name" : "Arvada",
+               "short_name" : "Arvada",
+               "types" : 
+               [
+                  "locality",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Jefferson County",
+               "short_name" : "Jefferson County",
+               "types" : 
+               [
+                  "administrative_area_level_2",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "Colorado",
+               "short_name" : "CO",
+               "types" : 
+               [
+                  "administrative_area_level_1",
+                  "political"
+               ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : 
+               [
+                  "country",
+                  "political"
+               ]
+            }
+         ],
+         "formatted_address" : "Arvada, CO 80007, USA",
+         "geometry" : 
+         {
+            "bounds" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.892046,
+                  "lng" : -105.1474541
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8078919,
+                  "lng" : -105.269273
+               }
+            },
+            "location" : 
+            {
+               "lat" : 39.8514427,
+               "lng" : -105.1960795
+            },
+            "location_type" : "APPROXIMATE",
+            "viewport" : 
+            {
+               "northeast" : 
+               {
+                  "lat" : 39.892046,
+                  "lng" : -105.1474541
+               },
+               "southwest" : 
+               {
+                  "lat" : 39.8078919,
+                  "lng" : -105.269273
+               }
+            }
+         },
+         "place_id" : "ChIJ6_UUmw2Oa4cR7z__EExta4o",
+         "postcode_localities" : 
+         [
+            "Arvada",
+            "Leyden"
+         ],
+         "types" : 
+         [
+            "postal_code"
+         ]
+      }
+   ],
+   "status" : "OK"
+}
