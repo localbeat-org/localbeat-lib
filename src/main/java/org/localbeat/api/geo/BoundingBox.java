@@ -25,13 +25,13 @@ import lombok.NoArgsConstructor;
 public class BoundingBox {
 
 	/**
-	 * Top left coordinate of the bounding box
+	 * Bottom left coordinate of the bounding box
 	 */
 	@JsonProperty(value="southwest")
 	private Coordinate minPoint;
 	
 	/**
-	 * Bottom right of the bounding box
+	 * Top right of the bounding box
 	 */
 	@JsonProperty(value="northeast")
 	private Coordinate maxPoint;

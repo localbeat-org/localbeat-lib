@@ -51,6 +51,7 @@ public class DateFormat {
 				DATETIME_DASH("yyyy-MM-dd HH:mm"),
 				ISO("yyyy-MM-dd'T'HH:mm:ss.SSS zzz"),
 				ISO_SHORT("yyyy-MM-dd'T'HH:mm:ss.SSS"),
+				ISO_SHORT_NO_MS("yyyy-MM-dd'T'HH:mm:ss"),
 				
 				//date formats
 				DATE_DASH("yyyy-MM-dd"),
