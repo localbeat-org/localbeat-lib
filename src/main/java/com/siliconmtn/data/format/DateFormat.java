@@ -134,7 +134,6 @@ public class DateFormat {
 	 */
 	public static Date parseUnknownPattern(String theDate) {	
 		if (theDate == null) return null;
-		theDate = theDate.replace(",", "");
 		theDate = theDate.trim();
 		Date d = null;
 	
