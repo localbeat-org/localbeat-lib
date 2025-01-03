@@ -26,20 +26,14 @@ import lombok.extern.log4j.Log4j2;
 public class KeywordMatcher {
 	
 	private Map<String, String> keywords;
-	private String sourceText;
 	
 	/**
-	 * 
-	 * @param sourceText
-	 * @param keywords
-	 * @throws InvalidDataException
+	 * Constructor.  Identifies the keywords to be utilized for the mapping
+	 * @param keywords Uses the map key as the alias es to be found and the value 
+	 * as the returned value
 	 */
-	public KeywordMatcher(String sourceText, Map<String, String> keywords) throws InvalidDataException {
-		if (keywords == null || keywords.isEmpty() || StringUtil.isEmpty(sourceText))
-			throw new InvalidDataException("Keywords and source text must be present ");
-		
+	public KeywordMatcher(Map<String, String> keywords) {
 		this.keywords = keywords;
-		this.sourceText = sourceText;
 	}
 
 	
@@ -47,13 +41,26 @@ public class KeywordMatcher {
 	 * Finds all of the matching keywords
 	 * @return
 	 */
-	public Set<String> findKeywordMatches() {
-		Set<String> matches = new HashSet<>();
+	public Set<String> findKeywordMatchesReturnCode(String sourceText) throws InvalidDataException {
+		if (keywords == null || keywords.isEmpty() || StringUtil.isEmpty(sourceText))
+			throw new InvalidDataException("Source Data and Keywords must not be empty");
 		
+		Set<String> matches = new HashSet<>();
         List<String> results = checkIfListWordMatches(sourceText.toLowerCase(), keywords.keySet());
         for(String cat : results) matches.add(keywords.get(cat));
         
         return matches;
+	}
+	
+	/**
+	 * Finds all of the matching keywords
+	 * @return
+	 */
+	public Set<String> findKeywordMatchesReturnAlias(String sourceText) throws InvalidDataException {
+		if (keywords == null || keywords.isEmpty() || StringUtil.isEmpty(sourceText))
+			throw new InvalidDataException("Source Data and Keywords must not be empty");
+
+        return new HashSet<>(checkIfListWordMatches(sourceText.toLowerCase(), keywords.keySet()));
 	}
 
 	/**

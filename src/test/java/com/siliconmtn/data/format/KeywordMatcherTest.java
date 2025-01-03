@@ -4,12 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import com.siliconmtn.data.exception.InvalidDataException;
@@ -54,68 +51,73 @@ class KeywordMatcherTest {
 	 * @throws InvalidDataException 
 	 */
 	@Test
-	void testKeywordMatcher() throws InvalidDataException {
-		KeywordMatcher km = new KeywordMatcher(source, categories);
+	void testKeywordMatcher() {
+		KeywordMatcher km = new KeywordMatcher(categories);
 		assertNotNull(km);
-	}
-	
-	/**
-	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#KeywordMatcher(java.lang.String, java.util.Map)}.
-	 * @throws InvalidDataException 
-	 */
-	@Test
-	void testKeywordMatcherNullCat() throws InvalidDataException {
-		
-		assertThrows(InvalidDataException.class, () -> {
-			new KeywordMatcher(source, null);
-		});
-	}
-	
-	/**
-	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#KeywordMatcher(java.lang.String, java.util.Map)}.
-	 * @throws InvalidDataException 
-	 */
-	@Test
-	void testKeywordMatcherEmptyCat() throws InvalidDataException {
-		
-		assertThrows(InvalidDataException.class, () -> {
-			new KeywordMatcher(source, new HashMap<>());
-		});
-	}
-	
-	/**
-	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#KeywordMatcher(java.lang.String, java.util.Map)}.
-	 * @throws InvalidDataException 
-	 */
-	@Test
-	void testKeywordMatcherNullSource() throws InvalidDataException {
-		
-		assertThrows(InvalidDataException.class, () -> {
-			new KeywordMatcher(null, categories);
-		});
 	}
 
 	/**
-	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatches()}.
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnCode(java.lang.String)}.
 	 * @throws InvalidDataException 
 	 */
 	@Test
-	void testFindKeywordMatches() throws InvalidDataException {
-		KeywordMatcher km = new KeywordMatcher(source, categories);
-		Set<String> matches = km.findKeywordMatches();
+	void testFindKeywordMatchesReturnCode() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(categories);
+		Set<String> matches = km.findKeywordMatchesReturnCode(source);
+		System.out.println(matches);
+		
 		assertEquals(2, matches.size());
 		assertTrue(matches.contains("ROCK"));
 		assertTrue(matches.contains("ICE_HOCKEY"));
 	}
 
 	/**
-	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#checkIfListWordMatches(java.lang.String, java.util.Set)}.
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnCode(java.lang.String)}.
 	 * @throws InvalidDataException 
 	 */
 	@Test
-	void testCheckIfListWordMatches() throws InvalidDataException {
-		KeywordMatcher km = new KeywordMatcher(source, categories);
-		List<String> matches = km.checkIfListWordMatches(source, categories.keySet());
+	void testFindKeywordMatchesReturnCodeNoCat() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(new HashMap<>());
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnCode(source);
+		});
+	}
+
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnCode(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnCodeNullCat() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(null);
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnCode(source);
+		});
+	}
+	
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnCode(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnCodeNoSource() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(categories);
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnCode(null);
+		});
+	}
+	
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnAlias(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnAlias() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(categories);
+		Set<String> matches = km.findKeywordMatchesReturnAlias(source);
 		System.out.println(matches);
 		
 		assertEquals(3, matches.size());
@@ -123,5 +125,43 @@ class KeywordMatcherTest {
 		assertTrue(matches.contains("hockey"));
 		assertTrue(matches.contains("rock & roll"));
 	}
+	
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnAlias(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnAliasNoCat() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(new HashMap<>());
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnAlias(source);
+		});
+	}
 
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnAlias(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnAliasNullCat() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(null);
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnAlias(source);
+		});
+	}
+	
+	/**
+	 * Test method for {@link com.siliconmtn.data.format.KeywordMatcher#findKeywordMatchesReturnAlias(java.lang.String)}.
+	 * @throws InvalidDataException 
+	 */
+	@Test
+	void testFindKeywordMatchesReturnAliasNoSource() throws InvalidDataException {
+		KeywordMatcher km = new KeywordMatcher(categories);
+		
+		assertThrows(InvalidDataException.class, () -> {
+			km.findKeywordMatchesReturnAlias(null);
+		});
+	}
 }
